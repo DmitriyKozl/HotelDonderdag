@@ -24,7 +24,7 @@ namespace Hotel.Persistence.Repositories
             try
             {
                 Dictionary<int,Customer> customers = new Dictionary<int, Customer>();
-                string sql = "select t1.id,t1.name customername,t1.email,t1.phone,t1.address,t2.name membername,t2.birthday\r\nfrom customer t1 left join (select * from member where status=1) t2 on t1.id=t2.customerId\r\nwhere t1.status=1";
+                string sql = "select t1.id,t1.name customername,t1.email,t1.phone,t1.address,t2.name membername,t2.birthday\r\nfrom Customer t1 left join (select * from Member where status=1) t2 on t1.id=t2.customerId\r\nwhere t1.status=1";
                 if (!string.IsNullOrWhiteSpace(filter)) 
                 {
                     sql += " and (t1.id like @filter or t1.name like @filter or t1.email like @filter)";

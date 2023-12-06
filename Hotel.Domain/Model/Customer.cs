@@ -13,6 +13,8 @@ namespace Hotel.Domain.Model
         public string Name { get; set; }
         public ContactInfo Contact { get; set; }
         private List<Member> _members = new List<Member>(); //gn dubbels
+        public List<Member> Members { get { return _members; } set {
+            if (value == null) throw new CustomerException("members null"); _members = value; } }
 
         public Customer(int id, string name, ContactInfo contact)
         {
