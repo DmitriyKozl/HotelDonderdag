@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.Exceptions;
+﻿using Hotel.BL.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace Hotel.Domain.Model
+namespace Hotel.BL.Model
 {
     public class ContactInfo
     {

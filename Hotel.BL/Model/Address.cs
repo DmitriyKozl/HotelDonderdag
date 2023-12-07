@@ -1,7 +1,7 @@
-﻿using Hotel.Domain.Exceptions;
+﻿using Hotel.BL.Exceptions;
 
 
-namespace Hotel.Domain.Model
+namespace Hotel.BL.Model
 {
     public class Address
     {

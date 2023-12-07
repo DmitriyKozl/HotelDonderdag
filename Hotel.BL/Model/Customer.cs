@@ -1,11 +1,11 @@
-﻿using Hotel.Domain.Exceptions;
+﻿using Hotel.BL.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hotel.Domain.Model
+namespace Hotel.BL.Model
 {
     public class Customer
     {
@@ -29,6 +29,9 @@ namespace Hotel.Domain.Model
             Contact = contact;
         }
 
+        public Customer()
+        {
+        }
         public IReadOnlyList<Member> GetMembers() { return _members.AsReadOnly(); }
         public void AddMember(Member member)
         {

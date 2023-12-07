@@ -1,6 +1,6 @@
-﻿using Hotel.Domain.Exceptions;
-using Hotel.Domain.Interfaces;
-using Hotel.Domain.Model;
+﻿using Hotel.BL.Exceptions;
+using Hotel.BL.Interfaces;
+using Hotel.BL.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +26,9 @@ namespace Hotel.Domain.Managers
             }
             catch(Exception ex)
             {
-                throw new CustomerManagerException("GetCustomers");
+                // Log the detailed exception message and stack trace for debugging
+                Console.WriteLine(ex.ToString());
+                throw new CustomerManagerException("Error in GetCustomers: " + ex.Message, ex);
             }
         }
     }
