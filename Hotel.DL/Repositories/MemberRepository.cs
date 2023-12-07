@@ -1,9 +1,9 @@
 ﻿using System.Data.SqlClient;
 using Hotel.BL.Interfaces;
 using Hotel.BL.Model;
-using HotelProject.DL.Exceptions;
+using Hotel.DL.Exceptions;
 
-namespace Hotel.Persistence.Repositories;
+namespace Hotel.DL.Repositories;
 
 public class MemberRepository : IMemberRepository {
     string connectionString;

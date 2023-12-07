@@ -1,5 +1,5 @@
 ﻿using Hotel.BL.Model;
-using Hotel.Persistence.Repositories;
+using Hotel.DL.Repositories;
 
 namespace ConsoleAppDL {
     internal class Program {

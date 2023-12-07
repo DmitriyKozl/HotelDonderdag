@@ -9,7 +9,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Hotel.BL\Hotel.BL.csproj" />
-      <ProjectReference Include="..\Hotel.Persistence\Hotel.Persistence.csproj" />
+      <ProjectReference Include="..\Hotel.DL\Hotel.DL.csproj" />
       <ProjectReference Include="..\Hotel.Util\Hotel.Util.csproj" />
     </ItemGroup>
 

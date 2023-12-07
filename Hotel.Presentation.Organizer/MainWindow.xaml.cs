@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using Hotel.BL.Managers;
 using Hotel.Util;
-using Hotel.Persistence.Repositories;
+using Hotel.DL.Repositories;
 
 namespace Hotel.Presentation.Organizer {
     /// <summary>

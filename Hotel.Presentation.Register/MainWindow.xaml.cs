@@ -31,15 +31,20 @@ namespace Hotel.Presentation.Register {
 
         public MainWindow() {
             InitializeComponent();
+            InitializeManagers();
+            PopulateComboBoxes();
+        }
+
+        private void InitializeManagers() {
             registrationManager = new RegistrationManager(RepositoryFactory.RegistrationRepository);
             customerManager = new CustomerManager(RepositoryFactory.CustomerRepository);
             activityManager = new ActivityManager(RepositoryFactory.ActivityRepository);
             memberManager = new MemberManager(RepositoryFactory.MemberRepository);
+        }
+
+        private void PopulateComboBoxes() {
             CustomerComboBox.ItemsSource = customerManager.GetCustomers(null);
             ActivitiesComboBox.ItemsSource = activityManager.GetActivities(null);
-            customer = new Customer(
-            );
-            customer.Members = new List<Member>();
         }
 
         private void SignUpButton_Click(object sender, RoutedEventArgs e) {
@@ -56,18 +61,15 @@ namespace Hotel.Presentation.Register {
         private void UpdateRegistrationDetails() {
             registration = new Registration(customer, activity);
 
+            var adultsInfo = $" {registration.NumberOfAdults} adult(s)";
+            var childrenInfo = $" {registration.NumberOfChildren} children";
+            SubtotalAdultsTextBlock.Text = registration.costAdult + adultsInfo;
+            SubtotalChildrenTextBlock.Text = registration.costChild + childrenInfo;
+
             if (activity.Discount == null || activity.Discount == 0) {
-                SubtotalAdultsTextBlock.Text =
-                    registration.costAdult.ToString() + $" {registration.NumberOfAdults} adults";
-                SubtotalChildrenTextBlock.Text =
-                    registration.costChild.ToString() + $" {registration.NumberOfChildren} children";
                 DiscountTextBlock.Text = " ";
             }
             else {
-                SubtotalAdultsTextBlock.Text =
-                    $"{registration.costAdult.ToString()} ({activity.PriceAdult * registration.NumberOfAdults} per adult) {registration.NumberOfAdults} adults";
-                SubtotalChildrenTextBlock.Text =
-                    $"{registration.costChild.ToString()} ({activity.PriceChild * registration.NumberOfChildren}) {registration.NumberOfChildren} children";
                 DiscountTextBlock.Text = $"Discount: {activity.Discount}%";
             }
 
@@ -105,7 +107,6 @@ namespace Hotel.Presentation.Register {
 
         private void ActivitiesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             MembersCheckboxes.IsEnabled = true;
-            // MembersListBox.SelectedItems.Clear();
             activity = ActivitiesComboBox.SelectedItem as Activity;
             DateTextBlock.Text = activity.Date.ToString();
             LocationTextBlock.Text = activity.Location;
@@ -114,9 +115,9 @@ namespace Hotel.Presentation.Register {
             registration = new Registration(customer, activity);
 
             if (activity.Discount == null || activity.Discount == 0) {
-                SubtotalAdultsTextBlock.Text = registration.costAdult.ToString() +
+                SubtotalAdultsTextBlock.Text = registration.costAdult +
                                                $"       {registration.NumberOfAdults} adult(s)";
-                SubtotalChildrenTextBlock.Text = registration.costChild.ToString() +
+                SubtotalChildrenTextBlock.Text = registration.costChild +
                                                  $"       {registration.NumberOfChildren} children";
                 DiscountTextBlock.Text = " ";
                 TotalCostTextBlock.Text = registration.Price.ToString();

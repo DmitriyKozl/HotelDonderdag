@@ -3,7 +3,7 @@ using Hotel.BL.Interfaces;
 using Hotel.BL.Model;
 using HotelProject.BL.Exceptions;
 
-namespace Hotel.Persistence.Repositories;
+namespace Hotel.DL.Repositories;
 
 public class OrganiserRepository : IOrganiserRepository {
     public string connectionString { get; set; }

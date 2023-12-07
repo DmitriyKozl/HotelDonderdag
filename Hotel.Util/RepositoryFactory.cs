@@ -1,5 +1,5 @@
 ﻿using Hotel.BL.Interfaces;
-using Hotel.Persistence.Repositories;
+using Hotel.DL.Repositories;
 using System.Configuration;
 namespace Hotel.Util {
     public static class RepositoryFactory {

@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{07B6A256-6EC8-
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Presentation.Customer", "Hotel.Presentation.Customer\Hotel.Presentation.Customer.csproj", "{1A0EDE39-648C-4820-BD04-FB46093B37F9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.Persistence", "Hotel.Persistence\Hotel.Persistence.csproj", "{A3C02B6A-08F8-4BB7-8FE9-914E702A013C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hotel.DL", "Hotel.DL\Hotel.DL.csproj", "{A3C02B6A-08F8-4BB7-8FE9-914E702A013C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "consoleapps", "consoleapps", "{107AC8CE-5ABD-4C22-98E7-8ECBCB917EAF}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Presentation.Organizer", "Hotel.Presentation.Organizer\Hotel.Presentation.Organizer.csproj", "{F25FF62D-5587-4D21-9352-EC846E1D9948}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.Presentation.Register", "Hotel.Presentation.Register\Hotel.Presentation.Register.csproj", "{28CD7CAE-1BDB-450D-9C9E-BB54AA67348A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hotel.UnitTests", "Hotel.UnitTests\Hotel.UnitTests.csproj", "{BB231FBD-026D-4D7E-9CAA-ACE8D69474CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +57,10 @@ Global
 		{28CD7CAE-1BDB-450D-9C9E-BB54AA67348A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28CD7CAE-1BDB-450D-9C9E-BB54AA67348A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28CD7CAE-1BDB-450D-9C9E-BB54AA67348A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB231FBD-026D-4D7E-9CAA-ACE8D69474CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB231FBD-026D-4D7E-9CAA-ACE8D69474CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB231FBD-026D-4D7E-9CAA-ACE8D69474CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB231FBD-026D-4D7E-9CAA-ACE8D69474CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

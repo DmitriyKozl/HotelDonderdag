@@ -1,14 +1,14 @@
 ﻿using Hotel.BL.Interfaces;
 using Hotel.BL.Model;
-using Hotel.Persistence.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Hotel.DL.Exceptions;
 
-namespace Hotel.Persistence.Repositories
+namespace Hotel.DL.Repositories
 {
     public class CustomerRepository : ICustomerRepository
     {
