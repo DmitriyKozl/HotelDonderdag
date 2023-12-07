@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.Model;
+﻿using Hotel.BL.Model;
 using Hotel.Presentation.Customer.Model;
 using System;
 using System.Collections.Generic;

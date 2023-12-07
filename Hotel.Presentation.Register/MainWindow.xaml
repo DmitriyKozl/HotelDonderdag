@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hotel.Presentation.Register"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="600">
+        Title="MainWindow" Height="500" Width="600">
 
-    <Grid Margin="10">
+    <Grid Margin="50 10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -15,16 +15,16 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="Activity Sign-up" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"
-                   HorizontalAlignment="Center" />
+                   HorizontalAlignment="Right" />
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
             <!-- First Column -->
             <StackPanel Margin="10">
                 <TextBlock Text="Select Customer:" FontWeight="Bold" />
-                <ComboBox Name="CustomerComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" Width="180"
+                <ComboBox Name="CustomerComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" Width="150"
                           Height=" 20 "
-                          Margin="0,5,0,10" 
-                            SelectionChanged="CustomerComboBox_SelectionChanged" />
+                          Margin="0,5,0,10"
+                          SelectionChanged="CustomerComboBox_SelectionChanged" />
 
                 <TextBlock Text="Date of Activity:" FontWeight="Bold" />
                 <TextBlock Name="DateTextBlock" Width="180" Height="20" Margin="0,5,0,10" />
@@ -37,15 +37,29 @@
                 <TextBlock Text="Select Activities:" FontWeight="Bold" />
                 <ComboBox Name="ActivitiesComboBox" DisplayMemberPath="Name" SelectedValuePath="Id" Width="180"
                           Height=" 20 "
-                          Margin="0,5,0,10" 
-                          SelectionChanged="ActivitiesComboBox_SelectionChanged"
-                          />
+                          Margin="0,5,0,10"
+                          SelectionChanged="ActivitiesComboBox_SelectionChanged" />
 
-                <TextBlock Text="Select Members:" FontWeight="Bold" />
-                <ListBox Name="MembersListBox" DisplayMemberPath="Name" SelectionMode="Multiple" Width="180"
-                         Height=" 20 " Margin="0,5,0,10"
-                         SelectionChanged="MembersListBox_SelectionChanged"
-                         />
+                <!-- <TextBlock Text="Select Members:" FontWeight="Bold" /> -->
+                <!-- <ListBox Name="MembersListBox" DisplayMemberPath="Name" SelectionMode="Multiple" Width="180" -->
+                <!--          Height=" 20 " Margin="0,5,0,10" -->
+                <!--          SelectionChanged="MembersListBox_SelectionChanged" -->
+                <!--          /> -->
+                <StackPanel Grid.Row="1" Margin="10">
+
+                    <TextBlock Text="Select Members:" FontWeight="Bold" />
+                    <!-- Members Checkboxes List -->
+                    <ItemsControl Name="MembersCheckboxes" Width="180" Height="100" Margin="0,5,0,10">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <CheckBox Content="{Binding Name}" Tag="{Binding}"
+                                          Checked="MemberCheckBox_Checked"
+                                          Unchecked="MemberCheckBox_Unchecked"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+
                 <TextBlock Text="Subtotal Children" FontWeight="Bold" />
                 <TextBlock Name="SubtotalChildrenTextBlock" Width="180" Height="20" Margin="0,5,0,10" />
             </StackPanel>

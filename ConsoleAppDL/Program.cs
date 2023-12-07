@@ -1,4 +1,4 @@
-﻿using Hotel.Domain.Model;
+﻿using Hotel.BL.Model;
 using Hotel.Persistence.Repositories;
 
 namespace ConsoleAppDL {

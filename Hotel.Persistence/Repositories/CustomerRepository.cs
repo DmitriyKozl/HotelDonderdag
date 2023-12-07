@@ -1,5 +1,5 @@
-﻿using Hotel.Domain.Interfaces;
-using Hotel.Domain.Model;
+﻿using Hotel.BL.Interfaces;
+using Hotel.BL.Model;
 using Hotel.Persistence.Exceptions;
 using System;
 using System.Collections.Generic;

@@ -38,8 +38,7 @@ namespace Hotel.Presentation.Register {
             CustomerComboBox.ItemsSource = customerManager.GetCustomers(null);
             ActivitiesComboBox.ItemsSource = activityManager.GetActivities(null);
             customer = new Customer(
-                
-                );
+            );
             customer.Members = new List<Member>();
         }
 
@@ -54,18 +53,59 @@ namespace Hotel.Presentation.Register {
             Close();
         }
 
+        private void UpdateRegistrationDetails() {
+            registration = new Registration(customer, activity);
+
+            if (activity.Discount == null || activity.Discount == 0) {
+                SubtotalAdultsTextBlock.Text =
+                    registration.costAdult.ToString() + $" {registration.NumberOfAdults} adults";
+                SubtotalChildrenTextBlock.Text =
+                    registration.costChild.ToString() + $" {registration.NumberOfChildren} children";
+                DiscountTextBlock.Text = " ";
+            }
+            else {
+                SubtotalAdultsTextBlock.Text =
+                    $"{registration.costAdult.ToString()} ({activity.PriceAdult * registration.NumberOfAdults} per adult) {registration.NumberOfAdults} adults";
+                SubtotalChildrenTextBlock.Text =
+                    $"{registration.costChild.ToString()} ({activity.PriceChild * registration.NumberOfChildren}) {registration.NumberOfChildren} children";
+                DiscountTextBlock.Text = $"Discount: {activity.Discount}%";
+            }
+
+            TotalCostTextBlock.Text = registration.Price.ToString();
+        }
+
+        private void MemberCheckBox_Checked(object sender, RoutedEventArgs e) {
+            var checkBox = sender as CheckBox;
+            var member = checkBox.Tag as Member;
+            if (member != null) {
+                customer.Members.Add(member);
+            }
+
+            UpdateRegistrationDetails();
+        }
+
+        private void MemberCheckBox_Unchecked(object sender, RoutedEventArgs e) {
+            var checkBox = sender as CheckBox;
+            var member = checkBox.Tag as Member;
+            if (member != null) {
+                customer.Members.Remove(member);
+            }
+
+            UpdateRegistrationDetails();
+        }
+
         private void CustomerComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
             members = new List<Member>();
             customer = CustomerComboBox.SelectedItem as Customer;
             if (customer != null) {
                 members = memberManager.GetMembers(customer.Id);
-                MembersListBox.ItemsSource = members;
+                MembersCheckboxes.ItemsSource = members; // Bind the checkboxes to the members list
             }
         }
 
         private void ActivitiesComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            MembersListBox.IsEnabled = true;
-            MembersListBox.SelectedItems.Clear();
+            MembersCheckboxes.IsEnabled = true;
+            // MembersListBox.SelectedItems.Clear();
             activity = ActivitiesComboBox.SelectedItem as Activity;
             DateTextBlock.Text = activity.Date.ToString();
             LocationTextBlock.Text = activity.Location;
@@ -82,36 +122,10 @@ namespace Hotel.Presentation.Register {
                 TotalCostTextBlock.Text = registration.Price.ToString();
             }
             else {
-                SubtotalAdultsTextBlock.Text = registration.costAdult.ToString() +
+                SubtotalAdultsTextBlock.Text = registration.costAdult +
                                                $" ({activity.PriceAdult * registration.NumberOfAdults})       {registration.NumberOfAdults} adult(s)";
-                SubtotalChildrenTextBlock.Text = registration.costChild.ToString() +
+                SubtotalChildrenTextBlock.Text = registration.costChild +
                                                  $" ({activity.PriceChild * registration.NumberOfChildren})      {registration.NumberOfChildren} children";
-                DiscountTextBlock.Text = $"Discount: {activity.Discount}%";
-                TotalCostTextBlock.Text = registration.Price.ToString();
-            }
-        }
-
-        private void MembersListBox_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            customer.Members = new List<Member>();
-
-            foreach (Member member in MembersListBox.SelectedItems) {
-                customer.Members.Add(member);
-            }
-
-            registration = new Registration(customer, activity);
-            if (activity.Discount == null || activity.Discount == 0) {
-                SubtotalAdultsTextBlock.Text =
-                    registration.costAdult.ToString() + $"       {registration.NumberOfAdults} adults";
-                SubtotalChildrenTextBlock.Text = registration.costChild.ToString() +
-                                                 $"       {registration.NumberOfChildren} children";
-                DiscountTextBlock.Text = " ";
-                TotalCostTextBlock.Text = registration.Price.ToString();
-            }
-            else {
-                SubtotalAdultsTextBlock.Text =
-                    $"{registration.costAdult.ToString()} ({activity.PriceAdult * registration.NumberOfAdults} per adult)       {registration.NumberOfAdults} adults";
-                SubtotalChildrenTextBlock.Text =
-                    $"{registration.costChild.ToString()} ({activity.PriceChild * registration.NumberOfChildren})       {registration.NumberOfChildren} children";
                 DiscountTextBlock.Text = $"Discount: {activity.Discount}%";
                 TotalCostTextBlock.Text = registration.Price.ToString();
             }
