@@ -25,7 +25,7 @@
                         <GridViewColumn Header="Location" DisplayMemberBinding="{Binding Location}" Width="150"/>
                         <GridViewColumn Header="Start Date" DisplayMemberBinding="{Binding Date}" Width="155"/>
                         <GridViewColumn Header="Duration" DisplayMemberBinding="{Binding Duration}" Width="80"/>
-                        <GridViewColumn Header="Available Places" DisplayMemberBinding="{Binding AvailablePlaces}" Width="120"/>
+                        <GridViewColumn Header="Available Places" DisplayMemberBinding="{Binding Capacity}" Width="120"/>
                         <GridViewColumn Header="Cost for Adults" DisplayMemberBinding="{Binding PriceAdult}" Width="110"/>
                         <GridViewColumn Header="Cost for Children" DisplayMemberBinding="{Binding PriceChild}" Width="110"/>
                     </GridView>

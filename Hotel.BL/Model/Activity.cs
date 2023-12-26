@@ -76,7 +76,7 @@ public class Activity {
     public int Capacity {
         get { return _capacity; }
         set {
-            if (value <= 0) throw new ActivityException("invalid capacity");
+            if (value < 0) throw new ActivityException("invalid capacity");
             _capacity = value;
         }
     }

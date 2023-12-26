@@ -87,10 +87,10 @@ public class Registration {
     
     private void CalculatePrice() {
         if (_activity.Discount != null || _activity.Discount != 0) {
-            costAdult = (decimal) (_activity.PriceAdult - (_activity.PriceAdult * (_activity.Discount / 100))) *
+            costAdult =  (_activity.PriceAdult - (_activity.PriceAdult * (_activity.Discount / 100))) *
                         _numberOfAdults;
             if (Customer.Members.Count != 0)
-                costChild = (decimal) (_activity.PriceChild - (_activity.PriceChild * (_activity.Discount / 100))) *
+                costChild = (_activity.PriceChild - (_activity.PriceChild * (_activity.Discount / 100))) *
                             _numberOfChildren;
             else
                 costChild = 0;

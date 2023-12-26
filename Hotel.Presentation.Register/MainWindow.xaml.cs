@@ -53,6 +53,12 @@ namespace Hotel.Presentation.Register {
                 return;
             }
 
+            if (customer.Members.Count + 1 > activity.Capacity) {
+                MessageBox.Show("Not enough capacity for this activity.");
+                return;
+                
+            }
+
             registrationManager.AddRegistration(registration);
             MessageBox.Show("Registration completed successfully");
             Close();
@@ -101,7 +107,7 @@ namespace Hotel.Presentation.Register {
             customer = CustomerComboBox.SelectedItem as Customer;
             if (customer != null) {
                 members = memberManager.GetMembers(customer.Id);
-                MembersCheckboxes.ItemsSource = members; // Bind the checkboxes to the members list
+                MembersCheckboxes.ItemsSource = members; 
             }
         }
 

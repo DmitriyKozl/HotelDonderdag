@@ -14,6 +14,11 @@ public class RegistrationRepository : IRegistrationRepository {
 
     public void AddRegistration(Registration registration) {
         try {
+            if (!HasEnoughCapacity(registration.Activity.ActivityId,
+                    registration.NumberOfAdults + registration.NumberOfChildren)) {
+                throw new RegistrationRepositoryException("Not enough capacity for this activity.");
+            }
+
             string query =
                 "INSERT INTO Registrations (CustomerID, ActivityID, NumberOfAdults, NumberOfChildren,TotalCost) " +
                 "VALUES (@CustomerID, @ActivityID, @NumberOfAdults,@NumberOfChildren, @TotalCost)";
@@ -27,10 +32,40 @@ public class RegistrationRepository : IRegistrationRepository {
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+
+            UpdateActivityCapacity(registration.Activity.ActivityId,
+                registration.NumberOfAdults + registration.NumberOfChildren);
         }
 
         catch (Exception e) {
             throw new RegistrationRepositoryException("AddRegistration failed", e);
+        }
+    }
+
+    private bool HasEnoughCapacity(int activityId, int numberOfParticipants) {
+        string query = "SELECT Capacity FROM Activity WHERE ActivityID = @ActivityID";
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        using (SqlCommand cmd = new SqlCommand(query, conn)) {
+            cmd.Parameters.AddWithValue("@ActivityID", activityId);
+            conn.Open();
+
+            int currentCapacity = (int)cmd.ExecuteScalar();
+
+            return currentCapacity >= numberOfParticipants;
+        }
+    }
+
+    private void UpdateActivityCapacity(int activityId, int numberOfParticipants) {
+        string query = "UPDATE Activity SET Capacity = Capacity - @NumberOfParticipants WHERE ActivityID = @ActivityID";
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        using (SqlCommand cmd = new SqlCommand(query, conn)) {
+            cmd.Parameters.AddWithValue("@NumberOfParticipants", numberOfParticipants);
+            cmd.Parameters.AddWithValue("@ActivityID", activityId);
+
+            conn.Open();
+            cmd.ExecuteNonQuery();
         }
     }
 }

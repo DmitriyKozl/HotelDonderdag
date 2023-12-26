@@ -16,21 +16,40 @@ namespace Hotel.BL.Model
 
         public ContactInfo(string email, string phone, Address address)
         {
-            _email = email;
-            _phone = phone;
-            _address = address;
+            Email = email;   // Use the property, not the field
+            Phone = phone;   // Use the property, not the field
+            Address = address; // Use the property, not the field
         }
 
-        public string Email { get { return _email; } set { if (string.IsNullOrWhiteSpace(value)) throw new CustomerException("ci"); _email = value; } }
-       
+        public string Email {
+            get { return _email; }
+            set {
+                if (string.IsNullOrWhiteSpace(value) || !IsValidEmail(value))
+                    throw new CustomerException("Invalid email format.");
+                _email = value;
+            }
+        }       
         public string Phone {
             get { return _phone; }
-            set { if (string.IsNullOrWhiteSpace(value)) throw new CustomerException("cin"); _phone = value; } 
+            set { if (string.IsNullOrWhiteSpace(value)) throw new CustomerException("Customer"); _phone = value; } 
         }
         
         public Address Address {
             get { return _address; }
             set { if (value==null) throw new CustomerException("cin"); _address = value; }
         }
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
+ 
